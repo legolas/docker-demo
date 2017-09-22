@@ -31,7 +31,7 @@ public class DockerDemoApplication implements CommandLineRunner {
     private void showMessage(String... arguments) {
         LOGGER.info("showMessage called with {} arguments", arguments.length);
         String name = "World";
-        if(arguments.length > 0 && !arguments[0].isEmpty()) {
+        if (arguments.length > 0 && !arguments[0].isEmpty()) {
             name = arguments[0];
         }
 
@@ -39,13 +39,13 @@ public class DockerDemoApplication implements CommandLineRunner {
         printMessageOnScreen(message);
     }
 
-    private void printMessageOnScreen(String message) {
-        LOGGER.info("printMessage called with {}", message);
-        System.out.println(message);
-    }
-
     private String retrieveMessageFromService(String name) {
         LOGGER.info("retrieveMessageCalled with {}", name);
         return messageService.getMessage(name);
+    }
+
+    private void printMessageOnScreen(String message) {
+        LOGGER.info("printMessage called with {}", message);
+        System.out.println(message);
     }
 }
