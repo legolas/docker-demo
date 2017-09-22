@@ -38,7 +38,6 @@
         </dependency>
     </dependencies>
 
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -52,6 +51,10 @@
                 <version>0.2.3</version>
                 <configuration>
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
@@ -61,6 +64,15 @@
                         </resource>
                     </resources>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
