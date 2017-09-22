@@ -2,7 +2,7 @@ package nl.dulsoft.demo.docker.dockerdemo;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:marcel.dullaart@rws.nl">Marcel Dullaart</a>

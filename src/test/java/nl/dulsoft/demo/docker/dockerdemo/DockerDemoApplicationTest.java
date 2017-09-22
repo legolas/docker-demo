@@ -1,38 +1,51 @@
 package nl.dulsoft.demo.docker.dockerdemo;
 
-import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
-import java.util.Arrays;
-import java.util.Collections;
-
-import static junit.framework.TestCase.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:marcel.dullaart@rws.nl">Marcel Dullaart</a>
  */
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 public class DockerDemoApplicationTest {
 
-
-//    @MockBean
-//    MessageService messageService;
+    public static final String SDB_COLLEAGUES = "SDB Colleagues";
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
+    @Mock
+    MessageService messageService;
+    @InjectMocks
+    private DockerDemoApplication objectUnderTest;
 
     @Test
-    public void itShoudldCallMessageServiceWithoutArgument() {
-//        assertNotNull(messageService);
-//        when(messageService.getMessage()).thenReturn("Hello world");
-        String[] args = new String[]{""};
+    public void itShoudldCallMessageServiceWithoutArgument() throws Exception {
+        String[] args = new String[]{};
+        when(messageService.getMessage("World")).thenReturn("Hello world");
 
-        DockerDemoApplication.main(args);
+        objectUnderTest.run();
 
-//        verify(messageService).getMessage();
+        verify(messageService).getMessage("World");
+    }
+
+    @Test
+    public void itShoudldCallMessageServiceWithNameArgument() throws Exception {
+        String[] args = new String[]{};
+        when(messageService.getMessage(SDB_COLLEAGUES)).thenReturn("Hello " + SDB_COLLEAGUES);
+
+        objectUnderTest.run(SDB_COLLEAGUES);
+
+        verify(messageService).getMessage(SDB_COLLEAGUES);
+    }
+
+    @Test
+    public void itShouldCallMessageServiceWithoutArguments() {
+        objectUnderTest.main(new String[]{});
     }
 }
-
