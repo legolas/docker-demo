@@ -29,7 +29,7 @@ public class DockerDemoApplication implements CommandLineRunner {
 
     private void showMessage(String... arguments) {
         LOGGER.info("showMessage called with {} arguments", arguments);
-        String name = "World";
+        String name = "SDB Colleagues";
         if (arguments != null && arguments.length > 0 && !arguments[0].isEmpty()) {
             name = arguments[0];
         }
