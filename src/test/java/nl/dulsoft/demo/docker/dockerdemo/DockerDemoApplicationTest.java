@@ -16,10 +16,11 @@ import static org.mockito.Mockito.when;
 //@RunWith(SpringRunner.class)
 public class DockerDemoApplicationTest {
 
-    public static final String SDB_COLLEAGUES = "SDB Colleagues";
+    private static final String SDB_COLLEAGUES = "SDB Colleagues";
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock
+    private
     MessageService messageService;
     @InjectMocks
     private DockerDemoApplication objectUnderTest;
@@ -45,7 +46,12 @@ public class DockerDemoApplicationTest {
     }
 
     @Test
-    public void itShouldCallMessageServiceWithoutArguments() {
-        objectUnderTest.main(new String[]{});
+    public void itShouldCallMessageServiceWithoutArgumentsWhenCalledWithEmptyArgumentList() throws Exception {
+        objectUnderTest.run();
+    }
+
+    @Test
+    public void itShouldCallMessageServiceWithoutArgumentsWhenCalledNull() throws Exception {
+        objectUnderTest.run(null);
     }
 }

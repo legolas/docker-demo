@@ -12,7 +12,7 @@ public class MessageService {
     static final String MESSAGE_FMT = "Hello, %s!";
 
     String getMessage(String... names) {
-        if (names.length > 0) {
+        if (names != null && names.length > 0) {
             return getNamedMessage(names[0]);
         } else {
             return getDefaultMessage();

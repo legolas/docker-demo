@@ -15,7 +15,6 @@ public class DockerDemoApplication implements CommandLineRunner {
 
     public DockerDemoApplication(@Autowired MessageService messageService) {
         this.messageService = messageService;
-
     }
 
     public static void main(String[] args) {
@@ -29,9 +28,9 @@ public class DockerDemoApplication implements CommandLineRunner {
     }
 
     private void showMessage(String... arguments) {
-        LOGGER.info("showMessage called with {} arguments", arguments.length);
+        LOGGER.info("showMessage called with {} arguments", arguments);
         String name = "World";
-        if (arguments.length > 0 && !arguments[0].isEmpty()) {
+        if (arguments != null && arguments.length > 0 && !arguments[0].isEmpty()) {
             name = arguments[0];
         }
 
