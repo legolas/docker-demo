@@ -13,7 +13,6 @@ import static org.mockito.Mockito.when;
 /**
  * @author <a href="mailto:marcel.dullaart@rws.nl">Marcel Dullaart</a>
  */
-//@RunWith(SpringRunner.class)
 public class DockerDemoApplicationTest {
 
     private static final String SDB_COLLEAGUES = "SDB Colleagues";
