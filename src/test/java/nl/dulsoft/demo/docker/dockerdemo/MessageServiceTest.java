@@ -10,8 +10,13 @@ import static org.junit.Assert.assertEquals;
 public class MessageServiceTest {
 
     @Test
-    public void itShouldReturnDefaultMessage() {
-        assertEquals(String.format(MessageService.MESSAGE_FMT, "SDB Collega's"), new MessageService().getMessage());
+    public void itShouldReturnDefaultMessageWhenCalledWithoutArguments() {
+        assertEquals(MessageService.DEFAULT_MESSAGE, new MessageService().getMessage());
+    }
+
+    @Test
+    public void itShouldReturnDefaultMessageWhenCalledWithNullArgument() {
+        assertEquals(MessageService.DEFAULT_MESSAGE, new MessageService().getMessage(null));
     }
 
     @Test

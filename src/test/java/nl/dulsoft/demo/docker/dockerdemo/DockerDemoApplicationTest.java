@@ -13,13 +13,13 @@ import static org.mockito.Mockito.when;
 /**
  * @author <a href="mailto:marcel.dullaart@rws.nl">Marcel Dullaart</a>
  */
-//@RunWith(SpringRunner.class)
 public class DockerDemoApplicationTest {
 
-    public static final String SDB_COLLEAGUES = "SDB Colleagues";
+    private static final String SDB_COLLEAGUES = "SDB Colleagues";
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock
+    private
     MessageService messageService;
     @InjectMocks
     private DockerDemoApplication objectUnderTest;
@@ -27,11 +27,11 @@ public class DockerDemoApplicationTest {
     @Test
     public void itShoudldCallMessageServiceWithoutArgument() throws Exception {
         String[] args = new String[]{};
-        when(messageService.getMessage("SDB Collega's")).thenReturn("Hello SDB Collega's");
+        when(messageService.getMessage("SDB Colleagues")).thenReturn("Hello, SDB Colleagues!");
 
         objectUnderTest.run();
 
-        verify(messageService).getMessage("SDB Collega's");
+        verify(messageService).getMessage("SDB Colleagues");
     }
 
     @Test
@@ -45,7 +45,12 @@ public class DockerDemoApplicationTest {
     }
 
     @Test
-    public void itShouldCallMessageServiceWithoutArguments() {
-        objectUnderTest.main(new String[]{});
+    public void itShouldCallMessageServiceWithoutArgumentsWhenCalledWithEmptyArgumentList() throws Exception {
+        objectUnderTest.run();
+    }
+
+    @Test
+    public void itShouldCallMessageServiceWithoutArgumentsWhenCalledNull() throws Exception {
+        objectUnderTest.run(null);
     }
 }

@@ -2,25 +2,28 @@ package nl.dulsoft.demo.docker.dockerdemo;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 /**
  * @author <a href="mailto:marcel.dullaart@rws.nl">Marcel Dullaart</a>
  */
 @Service
 public class MessageService {
 
-    static final String MESSAGE_FMT = "Hello, %s!%nWelcome in Dublin.";
+    static final String DEFAULT_MESSAGE = "Hello, SDB Collega's!";
+    static final String MESSAGE_FMT = "Hello, %s!";
 
     String getMessage(String... names) {
-        if (names.length<= 0) {
-            names = new String[] {"SDB Collega's"};
+        if (names != null && names.length > 0) {
+            return getNamedMessage(names[0]);
+        } else {
+            return getDefaultMessage();
         }
-        return getNamedMessage(names[0]);
     }
 
     private String getNamedMessage(String name) {
         return String.format(MESSAGE_FMT, name);
+    }
+
+    private String getDefaultMessage() {
+        return DEFAULT_MESSAGE;
     }
 }
