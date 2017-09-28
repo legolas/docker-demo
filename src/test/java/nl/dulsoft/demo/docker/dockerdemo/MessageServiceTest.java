@@ -11,7 +11,7 @@ public class MessageServiceTest {
 
     @Test
     public void itShouldReturnDefaultMessage() {
-        assertEquals(MessageService.DEFAULT_MESSAGE, new MessageService().getMessage());
+        assertEquals(String.format(MessageService.MESSAGE_FMT, "SDB Collega's"), new MessageService().getMessage());
     }
 
     @Test

@@ -27,11 +27,11 @@ public class DockerDemoApplicationTest {
     @Test
     public void itShoudldCallMessageServiceWithoutArgument() throws Exception {
         String[] args = new String[]{};
-        when(messageService.getMessage("World")).thenReturn("Hello world");
+        when(messageService.getMessage("SDB Collega's")).thenReturn("Hello SDB Collega's");
 
         objectUnderTest.run();
 
-        verify(messageService).getMessage("World");
+        verify(messageService).getMessage("SDB Collega's");
     }
 
     @Test
