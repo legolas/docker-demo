@@ -1,0 +1,27 @@
+docker-machine create --driver virtualbox sdbdemo1
+docker-machine create --driver virtualbox sdbdemo2
+
+docker-machine ls
+
+docker-machine ssh sdbdemo1 "docker swarm init --advertise-addr 192.168.99.100"
+docker-machine ssh sdbdemo2 "docker swarm join --token SWMTKN-1-1ldjrxq5vpznb7t8x6el62x9xlx8jmwlzsku7hr5uwrvu5vex7-df28f5scruq30zt8srqtuqo8u 192.168.99.100:2377"
+
+docker-machine ssh sdbdemo1 "mkdir ./data"
+
+docker-machine scp docker-compose.yml sdbdemo1:~
+docker-machine ssh sdbdemo1 "docker stack deploy -c docker-compose.yml sdbdemolab"
+docker-machine ssh sdbdemo1 "docker stack ps sdbdemolab"
+ 
+eval $(docker-machine env sdbdemo1)
+
+docker stack deploy -c docker-compose.yml sdbdemolab
+
+docker stack ps sdbdemolab
+
+docker stack deploy -c docker-compose.yml sdbdemolab
+
+docker-machine ls
+
+docker-machine ssh sdbdemo2 "docker swarm leave"
+docker-machine ssh sdbdemo1 "docker swarm leave" --force
+
